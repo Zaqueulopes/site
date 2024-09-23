@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lopes Social - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #343A40;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .ticker {
+            background-color: #ff4500;
+            color: white;
+            padding: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .video-section, .news-section, .map-section, .countdown-section, .counter-section, .gallery-section {
+            margin: 20px 0;
+        }
+        .video-section iframe, .news-section iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        .map-section iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        .countdown, .counter {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .gallery-section img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .gallery-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery-section img {
+            flex: 1 1 calc(33.333% - 20px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lopes Social</h1>
+        <p>Alcançando a Mudança, Cuidado & Proteção, Saving Children, Paz no Planeta</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Projetos</a>
+        <a href="#">Parcerias</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <div class="ticker">
+        <p>Últimas Notícias: ONU anuncia novas medidas para combate à fome global | FAO destaca a importância da sustentabilidade agrícola | Novo relatório sobre mudanças climáticas</p>
+    </div>
+
+    <div class="container">
+        <div class="video-section">
+            <h2>Vídeos de Projetos Sociais</h2>
+            <iframe src="https://www.youtube.com/embed/example" allowfullscreen></iframe>
+        </div>
+
+        <div class="news-section">
+            <h2>Notícias ao Vivo</h2>
+            <iframe src="https://www.example.com/live-news" allowfullscreen></iframe>
+        </div>
+
+        <div class="map-section">
+            <h2>Mapa de Parcerias Ambientais</h2>
+            <iframe src="https://www.google.com/maps/d/embed?mid=example" allowfullscreen></iframe>
+        </div>
+
+        <div class="countdown-section">
+            <h2>Cronômetro de Projetos Sociais Globais</h2>
+            <div class="countdown" id="countdown">00:00:00</div>
+        </div>
+
+        <div class="counter-section">
+            <h2>Número de Pessoas em Insegurança Alimentar</h2>
+            <div class="counter" id="foodInsecurityCounter">Calculando...</div>
+        </div>
+
+        <div class="gallery-section">
+            <h2>Galeria de Fotos</h2>
+            <img src="image1.jpg" alt="Foto de Projeto">
+            <img src="image2.jpg" alt="Foto de Evento">
+            <img src="image3.jpg" alt="Parceria Ambiental">
+        </div>
+    </div>
+
+    <script>
+        // Contador de Projetos Sociais Globais
+        function countdownTimer() {
+            const eventDate = new Date("December 31, 2024 23:59:59").getTime();
+            const now = new Date().getTime();
+            const timeRemaining = eventDate - now;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeRemaining < 0) {
+                document.getElementById("countdown").innerHTML = "Evento Concluído";
+            }
+        }
+
+        setInterval(countdownTimer, 1000);
+
+        // Contador Dinâmico de Insegurança Alimentar
+        async function updateFoodInsecurityCounter() {
+            // Exemplo de chamada de API (fictícia)
+            const response = await fetch("https://api.example.com/food-insecurity");
+            const data = await response.json();
+            document.getElementById("foodInsecurityCounter").innerHTML = data.count.toLocaleString();
+        }
+
+        updateFoodInsecurityCounter();
+        setInterval(updateFoodInsecurityCounter, 60000); // Atualiza a cada minuto
+    </script>
+</body>
+</html>
+
